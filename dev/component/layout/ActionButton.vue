@@ -41,21 +41,12 @@ export default {
                     this.cbFormerValue = this.value;
                 } else {
                     console.log('in 3');
-                    const fv = parseFloat(this.formerValue);
-                    const cv = parseFloat(this.value);
-                    console.log(this.operation, fv, cv);
-                    this[this.operation](fv, cv);
-                    console.log('result', this.cbValue);
-                    this.cbFormerValue = this.cbValue;
+                    this.operate();
                 }
                 this.cbOperation = this.button.function;
             } else if (this.button.type === 'equal') {
                 console.log('this is equal');
-                const fv = parseFloat(this.formerValue);
-                const cv = parseFloat(this.value);
-                console.log(this.operation, fv, cv);
-                this[this.operation](fv, cv);
-                console.log('result', this.cbValue);
+                this.operate();
                 this.cbFormerValue = '';
             } else {
                 this[this.button.function]();
@@ -67,6 +58,13 @@ export default {
                 formerValue: this.cbFormerValue,
             });
             this.cbValue = '';
+        },
+        operate() {
+            const fv = parseFloat(this.formerValue);
+            const cv = parseFloat(this.value);
+            console.log(this.operation, fv, cv);
+            this[this.operation](fv, cv);
+            console.log('result', this.cbValue);
         },
         clear() {
             this.cbValue = '0';
