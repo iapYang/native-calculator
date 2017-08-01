@@ -26,10 +26,15 @@ export default {
         clickHandler() {
             if (this.button.type === 'number') {
                 if (this.value === '0' || this.type !== 'number') {
-                    this.cbValue = this.button.value;
+                    if (this.button.value === '.') {
+                        this.cbValue = `${this.value}${this.button.value}`;
+                    } else {
+                        this.cbValue = this.button.value;
+                    }
                 } else {
                     this.cbValue = `${this.value}${this.button.value}`;
                 }
+                this.cbFormerValue = this.formerValue;
             } else if (this.button.type === 'operation') {
                 console.log(this.formerValue);
                 if (this.type === 'operation') {
