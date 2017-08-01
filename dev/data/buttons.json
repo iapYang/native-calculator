@@ -1,0 +1,22 @@
+{
+    "buttons": [
+        {
+            "value": "C",
+            "type": "button",
+            "function": "clear"
+        },
+        {
+            "value": "+/-",
+            "type": "button",
+            "function": "plus-minus"
+        },
+        {
+            "value": "%",
+            "type": "button",
+            "function": "percentage"
+        },
+        {
+            
+        }
+    ]
+}
