@@ -2,13 +2,30 @@
     <div class="app-container">
         <div class="calculator">
             <div class="screen"></div>
+            <action-button
+                v-for="button,index in buttons"
+                :button="button"
+                :key="index"
+            />
         </div>
     </div>
 </template>
 
 <script>
+import data from '../data/buttons.json';
 
-export default {};
+import ActionButton from './layout/ActionButton.vue';
+
+export default {
+    data() {
+        return {
+            buttons: data.buttons,
+        };
+    },
+    components: {
+        ActionButton,
+    }
+};
 </script>
 
 <style lang="scss">
@@ -30,5 +47,10 @@ body {
     width: 375px;
     height: 560px;
     background-color: #000;
+}
+.screen {
+    width: 100%;
+    height: 160px;
+    background-color: red;
 }
 </style>
