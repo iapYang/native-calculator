@@ -12,9 +12,10 @@ export default {
     data() {
         return {
             cbValue: '',
+            cbType: 'number',
         };
     },
-    props: ['button', 'value'],
+    props: ['button', 'value', 'type'],
     computed: {
         isLarge() {
             return this.button.size === 'large';
@@ -23,7 +24,7 @@ export default {
     methods: {
         clickHandler() {
             if (this.button.type === 'number') {
-                if (this.value === '0') {
+                if (this.value === '0' || this.type !== 'number') {
                     this.cbValue = this.button.value;
                 } else {
                     this.cbValue = `${this.value}${this.button.value}`;
@@ -33,7 +34,10 @@ export default {
             } else {
                 this[this.button.function]();
             }
-            this.$emit('buttonClick', this.cbValue);
+            this.$emit('buttonClick', {
+                value: this.cbValue,
+                type: this.cbType,
+            });
             this.cbValue = '';
         },
         clear() {
@@ -45,9 +49,11 @@ export default {
             } else {
                 this.cbValue = `-${this.value}`;
             }
+            this.cbType = 'button';
         },
         percentage() {
             this.cbValue = `${Number(this.value) / 100}`;
+            this.cbType = 'button';
         },
         point() {
             this.cbValue = `${this.value}.`;
