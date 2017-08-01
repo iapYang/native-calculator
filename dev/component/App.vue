@@ -12,6 +12,7 @@
                 :button="button"
                 :key="index"
                 :value="showValue"
+                @buttonClick="buttonClickHandler"
             />
         </div>
     </div>
@@ -35,6 +36,11 @@ export default {
     methods: {
         inputChangeHandler() {
             console.log('2333333333333333333333333333');
+        },
+        buttonClickHandler(data) {
+            if (!data) return;
+            console.log(data);
+            this.showValue = data;
         },
     },
     components: {

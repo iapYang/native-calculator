@@ -8,7 +8,7 @@
         {
             "value": "+/-",
             "type": "button",
-            "function": "plus-minus"
+            "function": "plusMinus"
         },
         {
             "value": "%",
