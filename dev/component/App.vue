@@ -4,7 +4,8 @@
             <div class="screen">
                 <input
                     placeholder=0
-                    value="1111.22222222"
+                    :value="getScreenValue"
+                    @change="inputChangeHandler"
                 />
             </div>
             <action-button
@@ -17,6 +18,11 @@
 </template>
 
 <script>
+import {
+    mapGetters,
+    mapActions,
+} from 'vuex';
+
 import data from '../data/buttons.json';
 
 import ActionButton from './layout/ActionButton.vue';
@@ -26,6 +32,21 @@ export default {
         return {
             buttons: data.buttons,
         };
+    },
+    computed: {
+        ...mapGetters([
+            'getScreenValue',
+        ]),
+        showValue() {
+            if (this.getScreenValue === '') return 0;
+
+            return this.getScreenValue;
+        },
+    },
+    methods: {
+        inputChangeHandler() {
+            console.log(2333333333333333333333333333);
+        }
     },
     components: {
         ActionButton,
@@ -40,10 +61,13 @@ body {
     width: 100%;
     height: 100%;
 }
-#app, .app-container {
+
+#app,
+.app-container {
     width: 100%;
     height: 100%;
 }
+
 .calculator {
     position: absolute;
     left: 50%;
@@ -52,6 +76,7 @@ body {
     width: 375px;
     height: 560px;
 }
+
 .screen {
     position: relative;
     width: 100%;
@@ -71,6 +96,10 @@ body {
         color: #fff;
         font-size: 40px;
         padding: 10px 0;
+
+        &::-webkit-input-placeholder {
+            color: #fff;
+        }
     }
 }
 </style>
