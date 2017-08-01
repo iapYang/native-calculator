@@ -13,6 +13,8 @@
                 :key="index"
                 :value="showValue"
                 :type="currentType"
+                :operation="currentOperation"
+                :formerValue="formerValue"
                 @buttonClick="buttonClickHandler"
             />
         </div>
@@ -30,6 +32,8 @@ export default {
             buttons: data.buttons,
             showValue: '0',
             currentType: 'number',
+            currentOperation: '',
+            formerValue: '',
         };
     },
     computed: {
@@ -40,10 +44,15 @@ export default {
             console.log('2333333333333333333333333333');
         },
         buttonClickHandler(data) {
-            if (!data.value) return;
-            console.log(data.value);
-            this.showValue = data.value;
+            if (data.type === 'operation') {
+                this.currentOperation = data.operation;
+                this.showValue = data.value;
+            } else {
+                if (!data.value) return;
+                this.showValue = data.value;
+            }
             this.currentType = data.type;
+            this.formerValue = data.formerValue;
         },
     },
     components: {

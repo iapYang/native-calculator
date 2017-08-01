@@ -12,10 +12,11 @@ export default {
     data() {
         return {
             cbValue: '',
-            cbType: 'number',
+            cbOperation: '',
+            cbFormerValue: '',
         };
     },
-    props: ['button', 'value', 'type'],
+    props: ['button', 'value', 'type', 'operation', 'formerValue'],
     computed: {
         isLarge() {
             return this.button.size === 'large';
@@ -30,13 +31,40 @@ export default {
                     this.cbValue = `${this.value}${this.button.value}`;
                 }
             } else if (this.button.type === 'operation') {
-                console.log('dsihfii');
+                console.log(this.formerValue);
+                if (this.type === 'operation') {
+                    console.log('in 1');
+                    this.cbValue = this.value;
+                } else if (this.formerValue === '') {
+                    console.log('in 2');
+                    this.cbValue = this.value;
+                    this.cbFormerValue = this.value;
+                } else {
+                    console.log('in 3');
+                    const fv = parseFloat(this.formerValue);
+                    const cv = parseFloat(this.value);
+                    console.log(this.operation, fv, cv);
+                    this[this.operation](fv, cv);
+                    console.log('result', this.cbValue);
+                    this.cbFormerValue = this.cbValue;
+                }
+                this.cbOperation = this.button.function;
+            } else if (this.button.type === 'equal') {
+                console.log('this is equal');
+                const fv = parseFloat(this.formerValue);
+                const cv = parseFloat(this.value);
+                console.log(this.operation, fv, cv);
+                this[this.operation](fv, cv);
+                console.log('result', this.cbValue);
+                this.cbFormerValue = '';
             } else {
                 this[this.button.function]();
             }
             this.$emit('buttonClick', {
                 value: this.cbValue,
-                type: this.cbType,
+                type: this.button.type,
+                operation: this.cbOperation,
+                formerValue: this.cbFormerValue,
             });
             this.cbValue = '';
         },
@@ -49,14 +77,27 @@ export default {
             } else {
                 this.cbValue = `-${this.value}`;
             }
-            this.cbType = 'button';
         },
         percentage() {
             this.cbValue = `${Number(this.value) / 100}`;
-            this.cbType = 'button';
         },
         point() {
             this.cbValue = `${this.value}.`;
+        },
+        divide(former, current) {
+            this.cbValue = former / current;
+        },
+        product(former, current) {
+            this.cbValue = former * current;
+            console.log(this.cbValue);
+        },
+        minus(former, current) {
+            this.cbValue = former - current;
+        },
+        plus(former, current) {
+            this.cbValue = former + current;
+        },
+        equle(former, current) {
         },
     },
 };
