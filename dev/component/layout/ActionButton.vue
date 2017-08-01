@@ -23,6 +23,7 @@ export default {
         height: 80px;
         background-color: rgb(204, 204, 205);
         text-align: center;
+        cursor: pointer;
         span {
             font-size: 30px;
             line-height: 80px;

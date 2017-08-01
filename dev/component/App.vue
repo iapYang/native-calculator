@@ -1,7 +1,12 @@
 <template lang="html">
     <div class="app-container">
         <div class="calculator">
-            <div class="screen"></div>
+            <div class="screen">
+                <input
+                    placeholder=0
+                    value="1111.22222222"
+                />
+            </div>
             <action-button
                 v-for="button,index in buttons"
                 :button="button"
@@ -46,11 +51,26 @@ body {
     transform: translate(-50%, -50%);
     width: 375px;
     height: 560px;
-    background-color: #000;
 }
 .screen {
+    position: relative;
     width: 100%;
     height: 160px;
-    background-color: red;
+    background-color: #000;
+    text-align: right;
+    input {
+        position: absolute;
+        display: block;
+        width: 100%;
+        text-align: right;
+        outline: medium;
+        background-color: #000;
+        border-width: 0px;
+        bottom: 0;
+        right: 0;
+        color: #fff;
+        font-size: 40px;
+        padding: 10px 0;
+    }
 }
 </style>
