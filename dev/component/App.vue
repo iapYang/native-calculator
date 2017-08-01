@@ -4,25 +4,20 @@
             <div class="screen">
                 <input
                     placeholder=0
-                    :value="getScreenValue"
-                    @change="inputChangeHandler"
+                    v-model="showValue"
                 />
             </div>
             <action-button
                 v-for="button,index in buttons"
                 :button="button"
                 :key="index"
+                :value="showValue"
             />
         </div>
     </div>
 </template>
 
 <script>
-import {
-    mapGetters,
-    mapActions,
-} from 'vuex';
-
 import data from '../data/buttons.json';
 
 import ActionButton from './layout/ActionButton.vue';
@@ -31,26 +26,20 @@ export default {
     data() {
         return {
             buttons: data.buttons,
+            showValue: '0',
         };
     },
     computed: {
-        ...mapGetters([
-            'getScreenValue',
-        ]),
-        showValue() {
-            if (this.getScreenValue === '') return 0;
-
-            return this.getScreenValue;
-        },
+        
     },
     methods: {
         inputChangeHandler() {
-            console.log(2333333333333333333333333333);
-        }
+            console.log('2333333333333333333333333333');
+        },
     },
     components: {
         ActionButton,
-    }
+    },
 };
 </script>
 

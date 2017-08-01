@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    props: ['button'],
+    props: ['button', 'value'],
     computed: {
         isLarge() {
             return this.button.size === 'large';
