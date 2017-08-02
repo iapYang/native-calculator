@@ -5,7 +5,7 @@
                 <input
                     placeholder=0
                     v-model="showValue"
-                    @keyup.capture="keyupHandler"
+                    @keydown.prevent="keyupHandler"
                 />
             </div>
             <action-button
@@ -46,9 +46,19 @@ export default {
     },
     methods: {
         keyupHandler(e) {
-            if (keyValues.includes(e.key)) {
-                console.log('yes we have');
+            const currentKey = this.refrenceKey(e.key);
+            if (keyValues.includes(currentKey)) {
+                console.log('in');
+                const index = keyValues.indexOf(currentKey);
             }
+        },
+        refrenceKey(key) {
+            if (key === '/') return '÷';
+            if (key === '*') return '×';
+            if (key === '+') return '＋';
+            if (key === '-') return '－';
+            
+            return key;
         },
         buttonClickHandler(data) {
             if (data.type === 'operation') {
