@@ -5,6 +5,7 @@
                 <input
                     placeholder=0
                     v-model="showValue"
+                    @keyup.capture="keyupHandler"
                 />
             </div>
             <action-button
@@ -26,10 +27,14 @@ import data from '../data/buttons.json';
 
 import ActionButton from './layout/ActionButton.vue';
 
+const buttons = data.buttons;
+
+const keyValues = buttons.map(item => item.value);
+
 export default {
     data() {
         return {
-            buttons: data.buttons,
+            buttons,
             showValue: '0',
             currentType: 'number',
             currentOperation: '',
@@ -40,8 +45,10 @@ export default {
         
     },
     methods: {
-        inputChangeHandler() {
-            console.log('2333333333333333333333333333');
+        keyupHandler(e) {
+            if (keyValues.includes(e.key)) {
+                console.log('yes we have');
+            }
         },
         buttonClickHandler(data) {
             if (data.type === 'operation') {
