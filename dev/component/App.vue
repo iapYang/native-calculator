@@ -50,6 +50,8 @@ export default {
             if (keyValues.includes(currentKey)) {
                 console.log('in');
                 const index = keyValues.indexOf(currentKey);
+
+                this.$children[index].clickHandler();
             }
         },
         refrenceKey(key) {
