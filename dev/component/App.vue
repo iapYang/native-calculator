@@ -5,7 +5,7 @@
                 <input
                     placeholder=0
                     v-model="showValue"
-                    @keydown.prevent="keyupHandler"
+                    @keydown="keyupHandler"
                 />
             </div>
             <action-button
@@ -31,6 +31,14 @@ const buttons = data.buttons;
 
 const keyValues = buttons.map(item => item.value);
 
+const ignoreValues = [
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowUp',
+    'ArrowDown',
+    'Backspace'
+];
+
 export default {
     data() {
         return {
@@ -47,11 +55,14 @@ export default {
     methods: {
         keyupHandler(e) {
             const currentKey = this.refrenceKey(e.key);
+            console.log(currentKey);
             if (keyValues.includes(currentKey)) {
-                console.log('in');
                 const index = keyValues.indexOf(currentKey);
 
                 this.$children[index].clickHandler();
+            }
+            if (!ignoreValues.includes(currentKey)) {
+                e.preventDefault();
             }
         },
         refrenceKey(key) {
