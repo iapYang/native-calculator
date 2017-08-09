@@ -1,27 +1,28 @@
 {
-  "name": "calculator",
+  "name": "vue-native-calculator",
   "version": "1.0.0",
   "description": "fake iPhone calculator",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "iapvt",
-    "cli": "iapvt cli"
+    "cli": "iapvt cli",
+    "build": "iapvt build",
+    "gh": "iapvt gh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iapYang/native-calculator.git"
+    "url": "git+https://github.com/iapYang/vue-native-calculator.git"
   },
-  "author": "",
+  "author": "iapyang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/iapYang/native-calculator/issues"
+    "url": "https://github.com/iapYang/vue-native-calculator/issues"
   },
-  "homepage": "https://github.com/iapYang/native-calculator#readme",
+  "homepage": "https://github.com/iapYang/vue-native-calculator#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^4.3.0",
     "eslint-plugin-html": "^3.1.1",
-    "iapyang-vue-template": "^0.5.0"
+    "iapyang-vue-template": "^0.5.4"
   }
 }
